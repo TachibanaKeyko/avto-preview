@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>avtomatika.ru — набросок редизайна</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Tektur:wght@900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font:400 15px/1.5 Inter,sans-serif;background:#2f2f2f;color:#ddd;min-height:100vh;display:flex;flex-direction:column}
+  .bar{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:14px 20px;background:#262626;border-bottom:4px solid #fff200}
+  .bar b{font:900 18px Tektur;color:#fff;margin-right:auto}
+  .tabs{display:flex;gap:6px}
+  .tabs button{font:600 14px Inter;background:transparent;color:#ccc;border:1px solid #555;border-radius:3px;padding:8px 14px;cursor:pointer}
+  .tabs button.on{background:#fff200;color:#141414;border-color:#fff200}
+  .bar a{color:#fff200;font-size:14px}
+  .stage{flex:1;display:flex;justify-content:center;padding:24px 12px;overflow:auto}
+  iframe{background:#fff;border:0;border-radius:6px;box-shadow:0 10px 40px rgba(0,0,0,.4);height:calc(100vh - 120px);transition:width .25s}
+</style>
+</head>
+<body>
+<div class="bar">
+  <b>Intesis — набросок</b>
+  <div class="tabs">
+    <button data-w="100%" class="on">Десктоп</button>
+    <button data-w="820px">Планшет</button>
+    <button data-w="390px">Телефон</button>
+  </div>
+  <a href="intesis.html" target="_blank">Открыть отдельно</a>
+</div>
+<div class="stage"><iframe id="f" src="intesis.html" style="width:100%"></iframe></div>
+<script>
+  const f=document.getElementById('f');
+  const set=w=>{f.style.width=w;document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.w===w))};
+  document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{set(b.dataset.w);location.hash=b.textContent.trim()});
+  const h=decodeURIComponent(location.hash.slice(1));
+  document.querySelectorAll('.tabs button').forEach(b=>{if(b.textContent.trim()===h)set(b.dataset.w)});
+</script>
+</body>
+</html>
