@@ -7,194 +7,7 @@
 <title>Intesis — набросок редизайна</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Tektur:wght@500;700;900&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --ink:#141414; --text:#2b2b2b; --muted:#6b6b6b; --line:#e3e3e3;
-    --bg:#ffffff; --soft:#f5f5f3; --dark:#2f2f2f; --dark2:#262626;
-    --yellow:#fff200; --yellow-soft:#fff7a8;
-    --wrap:1200px; --r:4px;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{-webkit-text-size-adjust:100%}
-  body{font:400 16px/1.6 Inter,system-ui,sans-serif;color:var(--text);background:var(--bg)}
-  img{max-width:100%;display:block}
-  a{color:inherit}
-  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
-
-  /* типографика: одна шкала на обе страницы */
-  .h1,.h2,.h3{font-family:Tektur,Inter,sans-serif;color:var(--ink);letter-spacing:-.01em}
-  .h1{font-weight:900;font-size:clamp(30px,4.6vw,52px);line-height:1.08}
-  .h2{font-weight:900;font-size:clamp(24px,3vw,34px);line-height:1.15;text-transform:uppercase}
-  .h3{font-weight:700;font-size:19px;line-height:1.3}
-  .lead{font-size:clamp(17px,1.6vw,19px);line-height:1.6;color:var(--text);max-width:720px}
-  .muted{color:var(--muted)}
-
-  /* шапка */
-  header{border-bottom:1px solid var(--line);background:#fff;position:sticky;top:0;z-index:10}
-  header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:24px}
-  .logo{font-family:Tektur;font-weight:700;font-size:24px;text-decoration:none;color:var(--ink)}
-  nav{display:flex;flex-wrap:wrap;gap:12px 28px;font-size:15px;font-weight:500}
-  nav a{text-decoration:none;color:var(--text)}
-  nav a:hover{color:var(--ink);box-shadow:inset 0 -2px 0 var(--yellow)}
-  .burger{display:none;width:28px;height:18px;border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);position:relative}
-  .burger:after{content:"";position:absolute;left:0;right:0;top:4.5px;border-top:3px solid var(--ink)}
-
-  /* полоса-акцент из фирменного стиля, но тонкая и одна */
-  .stripe{height:8px;background:repeating-linear-gradient(-45deg,var(--yellow) 0 14px,var(--ink) 14px 28px)}
-
-  .crumbs{font-size:14px;color:var(--muted);padding-top:20px}
-  .crumbs a{text-decoration:none}
-
-  /* герой */
-  .hero{padding:32px 0 64px}
-  .hero-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;align-items:center}
-  .tag{display:inline-block;font:600 13px/1 Inter;text-transform:uppercase;letter-spacing:.08em;background:var(--yellow);color:var(--ink);padding:7px 10px;border-radius:2px;margin-bottom:20px}
-  .hero .lead{margin:22px 0 32px}
-  .btns{display:flex;gap:12px;flex-wrap:wrap}
-  .btn{display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 28px;font:700 15px Inter;text-decoration:none;border-radius:var(--r);border:2px solid var(--ink);color:var(--ink);background:transparent;cursor:pointer}
-  .btn-main{background:var(--yellow);border-color:var(--yellow)}
-  .btn-main:hover{background:#ffe800}
-  .btn:hover{transform:translateY(-1px)}
-  .hero-pic{background:var(--soft);border-radius:var(--r);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;padding:32px}
-  .hero-pic img{max-height:100%;object-fit:contain;mix-blend-mode:multiply}
-
-  /* факты */
-  .facts{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .fact{padding:28px 24px;border-left:1px solid var(--line)}
-  .fact:first-child{border-left:0;padding-left:0}
-  .fact b{display:block;font:900 34px/1 Tektur;color:var(--ink);margin-bottom:10px}
-  .fact span{font-size:14px;color:var(--muted);line-height:1.5;display:block}
-
-  /* секции: один ритм для всех */
-  section{padding:88px 0}
-  section.soft{background:var(--soft)}
-  .sec-head{display:grid;grid-template-columns:220px 1fr;gap:40px;margin-bottom:48px}
-  .num{font:700 14px Tektur;color:var(--muted);padding-top:10px;border-top:3px solid var(--yellow);align-self:start;width:fit-content}
-  .sec-head .lead{margin-top:16px}
-
-  /* проблема → решение */
-  .ps{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-  .card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:32px}
-  .soft .card{border-color:transparent}
-  .card .h3{margin-bottom:14px}
-  .card.dark{background:var(--dark);color:#d9d9d9;border-color:var(--dark)}
-  .card.dark .h3{color:#fff}
-  ul.dash{list-style:none;display:grid;gap:10px}
-  ul.dash li{padding-left:22px;position:relative}
-  ul.dash li:before{content:"";position:absolute;left:0;top:11px;width:10px;height:2px;background:var(--ink)}
-  .card.dark ul.dash li:before{background:var(--yellow)}
-  .proto{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-  .chip{font:500 13px Inter;padding:6px 10px;border:1px solid #555;border-radius:2px;color:#eee}
-  .chip.y{border-color:var(--yellow);color:var(--yellow)}
-  .arrow{font:700 13px Tektur;color:var(--muted);margin:18px 0 8px;text-transform:uppercase;letter-spacing:.05em}
-
-  /* кто использует */
-  .who{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:24px}
-  .who div{background:#fff;padding:24px 20px}
-  .who b{display:block;color:var(--ink);font-weight:600;margin-bottom:8px;line-height:1.35}
-  .who span{font-size:14px;color:var(--muted);line-height:1.5}
-
-  /* преимущества */
-  .adv{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 48px}
-  .adv-item{border-top:1px solid #cfcfcf;padding-top:20px}
-  .adv-item i{font:normal 700 13px Tektur;color:var(--muted)}
-  .adv-item .h3{margin:8px 0 10px;font-size:18px}
-  .adv-item p{font-size:15px;color:var(--muted);line-height:1.6}
-
-  /* товары */
-  .goods{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-  .good{border:1px solid var(--line);border-radius:var(--r);display:flex;flex-direction:column;text-decoration:none;transition:border-color .15s}
-  .good:hover{border-color:var(--ink)}
-  .good .pic{aspect-ratio:1;padding:24px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line)}
-  .good .pic img{width:72%;height:72%;object-fit:contain}
-  .good .body{padding:18px 20px 22px;display:flex;flex-direction:column;flex:1}
-  .good .name{font-size:15px;line-height:1.45;color:var(--text);flex:1}
-  .good .price{font:700 22px Tektur;color:var(--ink);margin-top:16px}
-  .more{margin-top:32px}
-
-  /* заявка */
-  .cta{background:var(--dark);color:#cfcfcf;padding:88px 0}
-  .cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px}
-  .cta .h2{color:#fff}
-  .cta .lead{color:#cfcfcf;margin:18px 0 32px}
-  .cta ul.dash li:before{background:var(--yellow)}
-  .cta ul.dash{gap:14px}
-  form{display:grid;gap:12px}
-  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  input,textarea{width:100%;font:400 15px Inter;background:var(--dark2);border:1px solid #4a4a4a;border-radius:var(--r);color:#fff;padding:15px 16px}
-  input::placeholder,textarea::placeholder{color:#8a8a8a}
-  input:focus,textarea:focus{outline:none;border-color:var(--yellow)}
-  textarea{min-height:120px;resize:vertical}
-  .attach{font-size:14px;color:#bdbdbd;border:1px dashed #5a5a5a;border-radius:var(--r);padding:14px 16px}
-  .consent{font-size:12px;color:#8a8a8a;line-height:1.5}
-  .reply{display:inline-block;color:var(--ink);background:var(--yellow);font:700 14px Inter;padding:6px 10px;border-radius:2px;margin-bottom:24px}
-
-  /* этапы */
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;counter-reset:s}
-  .step{background:#fff;border-radius:var(--r);padding:28px}
-  .step .n{font:900 40px/1 Tektur;color:var(--ink);display:flex;align-items:center;gap:12px;margin-bottom:18px}
-  .step .n:after{content:"";height:3px;flex:1;background:var(--yellow)}
-  .step .h3{margin-bottom:12px}
-  .step ul.dash{font-size:15px;color:var(--muted);gap:8px}
-  .step ul.dash li:before{top:10px;background:#9a9a9a}
-
-  /* вопросы */
-  .faq{border-top:1px solid var(--line)}
-  details{border-bottom:1px solid var(--line)}
-  summary{list-style:none;cursor:pointer;padding:24px 48px 24px 0;font:600 18px/1.4 Inter;color:var(--ink);position:relative}
-  summary::-webkit-details-marker{display:none}
-  summary:after{content:"";position:absolute;right:8px;top:50%;width:14px;height:14px;margin-top:-10px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(45deg);transition:transform .2s}
-  details[open] summary:after{transform:rotate(-135deg);margin-top:-2px}
-  details .ans{padding:0 0 26px;max-width:800px;color:var(--text)}
-  details .ans ul{margin-top:10px}
-
-  footer{background:var(--dark2);color:#a0a0a0;padding:40px 0;font-size:14px}
-  footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
-  footer nav a{color:#d0d0d0}
-
-  /* планшет */
-  @media (max-width:1024px){
-    header nav{display:none}.burger{display:block}
-    .hero-grid{grid-template-columns:1fr;gap:32px}
-    .hero-pic{aspect-ratio:16/9;max-height:340px;width:100%}
-    .facts{grid-template-columns:repeat(2,1fr)}
-    .fact:nth-child(3){border-left:0;padding-left:0}
-    .fact:nth-child(n+3){border-top:1px solid var(--line)}
-    .sec-head{grid-template-columns:1fr;gap:16px}
-    .who{grid-template-columns:repeat(2,1fr)}
-    .who div:last-child{grid-column:1/-1}
-    .good .pic{aspect-ratio:4/3}
-    .adv{grid-template-columns:repeat(2,1fr)}
-    .goods{grid-template-columns:repeat(2,1fr)}
-    .cta-grid{grid-template-columns:1fr;gap:40px}
-    .steps{grid-template-columns:repeat(2,1fr)}
-    section,.cta{padding:64px 0}
-  }
-  /* телефон */
-  @media (max-width:640px){
-    .wrap{padding:0 16px}
-    header .wrap{height:56px}
-    .logo{font-size:20px}
-    .hero{padding:20px 0 40px}
-    .btns .btn{width:100%}
-    .fact{padding:20px 12px}
-    .fact b{font-size:26px}
-    .ps,.row,.adv,.steps{grid-template-columns:1fr}
-    .adv{gap:28px}
-    .who{grid-template-columns:1fr}
-    .step{padding:22px}
-    .step .n{font-size:30px;margin-bottom:12px}
-    .goods{gap:12px}
-    .good .pic{padding:14px}
-    .good .body{padding:12px 12px 16px}
-    .good .name{font-size:13px}
-    .good .price{font-size:17px;margin-top:10px}
-    .card{padding:24px}
-    section,.cta{padding:48px 0}
-    .sec-head{margin-bottom:28px}
-    summary{font-size:16px;padding:20px 40px 20px 0}
-  }
-</style>
+<link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
 
@@ -308,34 +121,81 @@
   </div>
 </section>
 
-<div class="stripe"></div>
 <div class="cta" id="form">
   <div class="wrap cta-grid">
-    <div>
-      <h2 class="h2">Подберём шлюз под ваш объект</h2>
-      <p class="lead">Инженеры подберут модель и ответят на технические вопросы. Заявка идёт напрямую в инженерный отдел, минуя колл-центр</p>
-      <span class="reply">Ответ по существу в течение 24 часов</span>
-      <ul class="dash">
-        <li>Ведущий инженер закрепляется за проектом</li>
-        <li>Прямая линия с инженерным отделом</li>
-        <li>Сопровождение от ТЗ до пусконаладки</li>
-      </ul>
+    <div class="cta-form">
+      <div class="cta-head"><span class="cta-ava" aria-hidden="true"></span><h2 class="h2">Готовы интегрировать вашу климатическую технику?</h2></div>
+      <p class="lead">Наши инженеры помогут подобрать оптимальную модель шлюза и ответят на все технические вопросы</p>
+      <form onsubmit="return false">
+        <input name="name" placeholder="Ваше имя">
+        <div class="row"><input name="phone" type="tel" placeholder="Телефон"><input name="email" type="email" placeholder="Эл. почта"></div>
+        <textarea name="comment" maxlength="500" placeholder="Ваш комментарий"></textarea>
+        <label class="attach"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5l-8.6 8.6a5.5 5.5 0 01-7.8-7.8l8.6-8.6a3.7 3.7 0 015.2 5.2l-8.6 8.6a1.8 1.8 0 01-2.6-2.6l7.9-7.9"/></svg>Прикрепить ТЗ / Схему (PDF, DOC, Excel)<input type="file" accept=".pdf,.doc,.docx,.xls,.xlsx" hidden></label>
+        <label class="consent"><input type="checkbox" name="agree"><span>Нажимая на кнопку, вы даете согласие на обработку персональных данных и соглашаетесь с политикой конфиденциальности</span></label>
+        <button class="btn btn-main" type="submit">Отправить инженеру</button>
+        <p class="note">Ваша заявка поступит напрямую в инженерный отдел, минуя колл-центр</p>
+      </form>
     </div>
-    <form onsubmit="return false">
-      <div class="row"><input placeholder="Ваше имя"><input placeholder="Телефон"></div>
-      <input placeholder="Эл. почта">
-      <textarea placeholder="Опишите объект: бренды кондиционеров, количество блоков, система управления"></textarea>
-      <div class="attach">📎 Прикрепить ТЗ или схему (PDF, DOC, Excel)</div>
-      <button class="btn btn-main" type="submit">Отправить инженеру</button>
-      <p class="consent">Нажимая на кнопку, вы соглашаетесь с политикой конфиденциальности и обработкой персональных данных</p>
-    </form>
+    <div class="eng"><img src="https://avtomatika.ru/engineer.png" alt="Инженер"></div>
   </div>
 </div>
+<div class="perks">
+  <div class="wrap">
+    <div class="perk">Ответ по существу в течение 24 часов</div>
+    <div class="perk">Закрепление ведущего инженера за вашим проектом</div>
+    <div class="perk">Прямая линия с инженерным отделом, минуя колл-центр</div>
+    <div class="perk">Сопровождение объекта от разработки ТЗ до пусконаладки</div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="num">04</div>
+      <div>
+        <h2 class="h2">Линейка продукции Intesis</h2>
+        <p class="lead">Отдельные шлюзы под каждый крупный бренд: для бытовых линий и для коммерческих VRF/VRV-систем. Ёмкость у разных моделей одного бренда от 1 до 128 внутренних блоков</p>
+      </div>
+    </div>
+    <div class="lines">
+      <div class="brands">
+        <div><b>Япония</b><span>Mitsubishi Electric / Mitsubishi Heavy Industries, Toshiba, Panasonic, Fujitsu, Hitachi</span></div>
+        <div><b>Южная Корея</b><span>LG, Samsung</span></div>
+        <div><b>Китай</b><span>Haier, Midea, Hisense</span></div>
+      </div>
+      <div class="ps">
+        <div class="card">
+          <h3 class="h3">Универсальные протокольные шлюзы</h3>
+          <p class="muted">Для мультивендорных объектов и сложных систем интеграции</p>
+          <div class="proto lt"><span class="chip">Modbus (RTU/TCP)</span><span class="chip">BACnet (MS/TP, IP)</span><span class="chip">KNX</span><span class="chip">LonWorks</span><span class="chip">MQTT / облачные интеграции</span></div>
+          <div class="arrow">Когда нужны универсальные модели</div>
+          <ul class="dash">
+            <li>На объекте оборудование нескольких брендов</li>
+            <li>Требуется интеграция с существующей BMS-системой</li>
+            <li>Необходима масштабируемость и гибкость системы</li>
+          </ul>
+        </div>
+        <div class="card dark">
+          <h3 class="h3">700 Series — мультипротокольный шлюз</h3>
+          <p>Модели серии 700 (например, IN770AIR00SO000) объединяют в одном устройстве Modbus TCP/RTU, KNX TP и BACnet IP/MSTP с гибким лицензированием под задачу. Это актуальная замена ряда старых однопротокольных моделей, снятых с производства</p>
+          <div class="proto"><span class="chip y">Modbus TCP/RTU</span><span class="chip y">KNX TP</span><span class="chip y">BACnet IP/MSTP</span></div>
+        </div>
+      </div>
+      <h3 class="h3" style="margin-top:56px">Шлюзы для другого HVAC-оборудования</h3>
+      <div class="who four">
+        <div><b>Тепловые насосы</b><span>Интеграция с системами отопления и ГВС, поддержка реверсивных тепловых насосов</span></div>
+        <div><b>Приточно-вытяжные установки и вентиляция</b><span>Управление рекуператорами, мониторинг параметров воздуха</span></div>
+        <div><b>Чиллеры</b><span>Центральное холодоснабжение, чиллеры с воздушным и водяным охлаждением</span></div>
+        <div><b>Холодильное оборудование</b><span>Торговые холодильные витрины, промышленные холодильные установки</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="soft">
   <div class="wrap">
     <div class="sec-head">
-      <div class="num">04</div>
+      <div class="num">05</div>
       <div><h2 class="h2">Этапы работы</h2></div>
     </div>
     <div class="steps">
@@ -352,7 +212,7 @@
 <section>
   <div class="wrap">
     <div class="sec-head">
-      <div class="num">05</div>
+      <div class="num">06</div>
       <div><h2 class="h2">Частые вопросы</h2></div>
     </div>
     <div class="faq">
@@ -361,6 +221,7 @@
       <details><summary>Сколько внутренних блоков можно подключить к одному шлюзу?</summary><div class="ans">От 1 до 128 и больше, в зависимости от бренда кондиционера и модели шлюза</div></details>
       <details><summary>Какой протокол выбрать для BMS или умного дома?</summary><div class="ans">Для коммерческих объектов чаще BACnet/IP, для SCADA и контроллеров Modbus TCP, для умного дома KNX</div></details>
       <details><summary>Нужно ли программирование?</summary><div class="ans">Большинство шлюзов работают «из коробки»: готовые пресеты и настройка через веб-интерфейс. Программирование нужно только для нестандартных сценариев</div></details>
+      <details><summary>Как обновляется прошивка шлюза?</summary><div class="ans"><ul class="dash"><li>Локально: через веб-интерфейс шлюза, загрузкой файла прошивки</li><li>Облачно: для моделей с MyIntesis приходят уведомления о новых версиях</li><li>Через техподдержку: наши инженеры обновят прошивку удалённо</li></ul><p style="margin-top:12px">Рекомендуем обновлять прошивку раз в 6–12 месяцев, чтобы получать новые функции и исправления безопасности</p></div></details>
     </div>
   </div>
 </section>

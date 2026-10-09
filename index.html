@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>avtomatika.ru — набросок редизайна</title>
+<title>avtomatika.ru — редизайн двух страниц</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Tektur:wght@900&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
@@ -21,21 +21,35 @@
 </head>
 <body>
 <div class="bar">
-  <b>Intesis — набросок</b>
-  <div class="tabs">
+  <b>avtomatika.ru</b>
+  <div class="tabs pages">
+    <button data-p="intesis.html" class="on">Intesis</button>
+    <button data-p="wiren-board.html">Wiren Board</button>
+  </div>
+  <div class="tabs sizes">
     <button data-w="100%" class="on">Десктоп</button>
     <button data-w="820px">Планшет</button>
     <button data-w="390px">Телефон</button>
   </div>
-  <a href="intesis.html" target="_blank">Открыть отдельно</a>
+  <a id="solo" href="intesis.html" target="_blank">Открыть отдельно</a>
 </div>
 <div class="stage"><iframe id="f" src="intesis.html" style="width:100%"></iframe></div>
 <script>
-  const f=document.getElementById('f');
-  const set=w=>{f.style.width=w;document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.w===w))};
-  document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{set(b.dataset.w);location.hash=b.textContent.trim()});
-  const h=decodeURIComponent(location.hash.slice(1));
-  document.querySelectorAll('.tabs button').forEach(b=>{if(b.textContent.trim()===h)set(b.dataset.w)});
+  const f=document.getElementById('f'),solo=document.getElementById('solo');
+  const st={p:'intesis.html',w:'100%'};
+  const apply=()=>{
+    if(!f.src.endsWith(st.p))f.src=st.p;
+    f.style.width=st.w;solo.href=st.p;
+    document.querySelectorAll('.sizes button').forEach(b=>b.classList.toggle('on',b.dataset.w===st.w));
+    document.querySelectorAll('.pages button').forEach(b=>b.classList.toggle('on',b.dataset.p===st.p));
+    history.replaceState(null,'','#'+st.p.replace('.html','')+'/'+st.w);
+  };
+  document.querySelectorAll('.sizes button').forEach(b=>b.onclick=()=>{st.w=b.dataset.w;apply()});
+  document.querySelectorAll('.pages button').forEach(b=>b.onclick=()=>{st.p=b.dataset.p;apply()});
+  const [p,w]=decodeURIComponent(location.hash.slice(1)).split('/');
+  if(p==='wiren-board')st.p='wiren-board.html';
+  if(['100%','820px','390px'].includes(w))st.w=w;
+  apply();
 </script>
 </body>
 </html>
