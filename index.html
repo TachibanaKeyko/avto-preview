@@ -41,6 +41,7 @@
 <div class="stage"><iframe id="f" src="intesis.html" style="width:100%"></iframe></div>
 <script>
   const f=document.getElementById('f'),solo=document.getElementById('solo');
+  const sizes={'100%':'desktop','820px':'tablet','390px':'phone'};
   const st={p:'intesis.html',w:'100%',v:'new'};
   const live={'intesis.html':'https://avtomatika.ru/brands/Intesis','wiren-board.html':'https://avtomatika.ru/uslugi/programmirovanie-wiren-board'};
   const apply=()=>{
@@ -50,14 +51,14 @@
     document.querySelectorAll('.ver button').forEach(b=>b.classList.toggle('on',b.dataset.v===st.v));
     document.querySelectorAll('.sizes button').forEach(b=>b.classList.toggle('on',b.dataset.w===st.w));
     document.querySelectorAll('.pages button').forEach(b=>b.classList.toggle('on',b.dataset.p===st.p));
-    history.replaceState(null,'','#'+st.p.replace('.html','')+'/'+st.w+'/'+st.v);
+    history.replaceState(null,'','#'+st.p.replace('.html','')+'/'+sizes[st.w]+'/'+st.v);
   };
   document.querySelectorAll('.sizes button').forEach(b=>b.onclick=()=>{st.w=b.dataset.w;apply()});
   document.querySelectorAll('.pages button').forEach(b=>b.onclick=()=>{st.p=b.dataset.p;apply()});
   document.querySelectorAll('.ver button').forEach(b=>b.onclick=()=>{st.v=b.dataset.v;apply()});
-  const [p,w,v]=decodeURIComponent(location.hash.slice(1)).split('/');
+  const [p,w,v]=location.hash.slice(1).split('/');
   if(p==='wiren-board')st.p='wiren-board.html';
-  if(['100%','820px','390px'].includes(w))st.w=w;
+  for(const k in sizes)if(sizes[k]===w)st.w=k;
   if(v==='old')st.v='old';
   apply();
 </script>
