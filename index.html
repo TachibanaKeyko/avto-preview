@@ -29,7 +29,8 @@
   </div>
   <div class="tabs ver">
     <button data-v="old">Было</button>
-    <button data-v="new" class="on">Стало</button>
+    <button data-v="v2">v2</button>
+    <button data-v="new" class="on">v3</button>
   </div>
   <div class="tabs sizes">
     <button data-w="100%" class="on">Десктоп</button>
@@ -45,7 +46,7 @@
   const st={p:'intesis.html',w:'100%',v:'new'};
   const live={'intesis.html':'https://avtomatika.ru/brands/Intesis','wiren-board.html':'https://avtomatika.ru/uslugi/programmirovanie-wiren-board'};
   const apply=()=>{
-    const src=st.v==='old'?live[st.p]:st.p;
+    const src=st.v==='old'?live[st.p]:st.v==='v2'?'v2/'+st.p:st.p;
     if(f.getAttribute('src')!==src)f.setAttribute('src',src);
     f.style.width=st.w;solo.href=src;
     document.querySelectorAll('.ver button').forEach(b=>b.classList.toggle('on',b.dataset.v===st.v));
@@ -59,7 +60,7 @@
   const [p,w,v]=location.hash.slice(1).split('/');
   if(p==='wiren-board')st.p='wiren-board.html';
   for(const k in sizes)if(sizes[k]===w)st.w=k;
-  if(v==='old')st.v='old';
+  if(v==='old'||v==='v2')st.v=v;
   apply();
 </script>
 </body>
