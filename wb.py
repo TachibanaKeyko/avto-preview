@@ -17,7 +17,7 @@ body = f'''<div class="wrap crumbs"><a href="#">Главная</a> / <a href="#"
   <div class="wrap hero-grid">
     <div>
       <span class="tag">Услуга</span>
-      <h1 class="h1">Услуги программирования контроллеров Wiren Board</h1>
+      <h1 class="h1">Программирование контроллеров Wiren Board</h1>
       <p class="lead">Предлагаем индивидуальную разработку системы автоматизации «под ключ»</p>
       <div class="btns">
         <a class="btn btn-main" href="#form">Рассчитать стоимость</a>
