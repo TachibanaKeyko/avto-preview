@@ -343,3 +343,32 @@ textarea{min-height:76px}
 @media (max-width:640px){
   .row3{grid-template-columns:1fr}
 }
+
+/* ===== v5: два варианта полосы на выбор + новый блок «Платформа» ===== */
+/* вариант А: полоса по нижней границе букв */
+.sec-head.va .h2{align-items:flex-end}
+.sec-head.va .h2:after{margin-bottom:.2em}
+/* вариант Б: полоса во всю ширину, заголовок над ней */
+.sec-head.vb .h2{display:block}
+.sec-head.vb .h2:after{display:block;width:100%;margin-top:16px}
+
+/* «Платформа»: без плашек, как строка с цифрами — линии и текст */
+.platform{display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:start}
+.pf-logo{height:44px;width:auto;margin-bottom:24px}
+.pf-intro .lead{max-width:none}
+.pf-rows{border-top:1px solid var(--line)}
+.pf-row{display:grid;grid-template-columns:190px 1fr;gap:28px;padding:26px 0;border-bottom:1px solid var(--line)}
+.pf-label{font:700 15px/1.35 Tektur;color:var(--ink);padding-top:2px}
+.pf-row p{font-size:15px;line-height:1.6;color:var(--muted)}
+.pf-tags{list-style:none;display:flex;flex-wrap:wrap;gap:6px 20px;margin-top:14px;font:600 13px Inter;color:var(--ink)}
+.pf-tags li{display:flex;align-items:center;gap:8px}
+.pf-tags li:before{content:"";width:8px;height:8px;background:var(--yellow);box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
+@media (max-width:1024px){
+  .platform{grid-template-columns:1fr;gap:32px}
+}
+@media (max-width:640px){
+  .pf-row{grid-template-columns:1fr;gap:10px;padding:20px 0}
+  .pf-logo{height:36px}
+  .sec-head.va .h2{display:block}
+  .sec-head.va .h2:after{display:block;width:100%;margin:14px 0 0}
+}

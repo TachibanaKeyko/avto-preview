@@ -37,23 +37,25 @@ body = f'''<div class="wrap crumbs"><a href="#">Главная</a> / <a href="#"
 
 <section>
   <div class="wrap">
-    <div class="sec-head">
-      <div class="num">01</div>
-      <div>
-        <h2 class="h2">Платформа Wiren Board</h2>
+    <div class="sec-head va">
+      <h2 class="h2">Платформа Wiren Board</h2>
+    </div>
+    <div class="platform">
+      <div class="pf-intro">
+        <img class="pf-logo" src="img/logo_wirenboard.svg" alt="Wiren Board">
         <p class="lead">Wiren Board (WB) — мощная платформа и экосистема на базе Debian Linux, которая даёт безграничную свободу для автоматизации зданий, промышленных и IoT-проектов. Её главная фишка — гибкость и открытый софт</p>
       </div>
-    </div>
-    <div class="ps">
-      <div class="card">
-        <h3 class="h3">Что нужно для работы с WB</h3>
-        <p class="muted">Для прошивки адресов Modbus RTU по шине RS-485, создания веб-интерфейсов и интеграции по MQTT нужны основы системного администрирования и программирования</p>
-        <div class="proto lt"><span class="chip">Modbus RTU</span><span class="chip">RS-485</span><span class="chip">MQTT</span><span class="chip">Debian Linux</span></div>
-      </div>
-      <div class="card dark">
-        <h3 class="h3">Что делают наши инженеры</h3>
-        <p>Индивидуальная разработка промышленной автоматизации под ключ: написание сложной логики, включая визуальное программирование в Node-RED, интеграция стороннего оборудования по Modbus TCP и создание кастомных графических дашбордов</p>
-        <div class="proto"><span class="chip y">Node-RED</span><span class="chip y">Modbus TCP</span><span class="chip y">Дашборды</span></div>
+      <div class="pf-rows">
+        <div class="pf-row">
+          <h3 class="pf-label">Что нужно для работы с WB</h3>
+          <div><p>Для прошивки адресов Modbus RTU по шине RS-485, создания веб-интерфейсов и интеграции по MQTT нужны основы системного администрирования и программирования</p>
+          <ul class="pf-tags"><li>Modbus RTU</li><li>RS-485</li><li>MQTT</li><li>Debian Linux</li></ul></div>
+        </div>
+        <div class="pf-row">
+          <h3 class="pf-label">Что делают наши инженеры</h3>
+          <div><p>Индивидуальная разработка промышленной автоматизации под ключ: написание сложной логики, включая визуальное программирование в Node-RED, интеграция стороннего оборудования по Modbus TCP и создание кастомных графических дашбордов</p>
+          <ul class="pf-tags"><li>Node-RED</li><li>Modbus TCP</li><li>Дашборды</li></ul></div>
+        </div>
       </div>
     </div>
   </div>
@@ -61,7 +63,7 @@ body = f'''<div class="wrap crumbs"><a href="#">Главная</a> / <a href="#"
 
 <section class="soft" id="price">
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head vb">
       <div class="num">02</div>
       <div>
         <h2 class="h2">Стоимость услуг</h2>
